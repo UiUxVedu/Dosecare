@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoseCare - Smart Medication Management</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ✅ FIXED CSS -->
+    <link rel="stylesheet" href="{% static 'css/styleSheet.css' %}">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a class="navbar-brand" href="/">
+                <!-- ✅ FIXED IMAGE -->
+                <img src="{% static 'images/DoseCare_logo.png' %}" alt="DoseCare" height="50">
+            </a>
+        </div>
+
+        <div class="right">
+            <button id="dark-mode-btn" class="dark-mode-toggle" title="Toggle Dark Mode">
+                <img id="theme-icon" src="https://img.icons8.com/ios/50/2563eb/moon-symbol.png" alt="dark mode">
+            </button>
+
+            <button class="emergency-btn" onclick="triggerSOS()">SOS</button>
+
+            <!-- ✅ FIXED ROUTING -->
+            <button class="get-started" onclick="location.href='/login/'">Get Started</button>
+        </div>
+    </header> 
+
+    <main>
+        <section class="con1">
+            <div class="con1-content">
+                <span class="badge">Trusted by 10,000+ Caregivers</span>
+
+                <h1>Your Smart <br>
+                    <span style="color: #0F4C81;">Medication</span> <br>
+                    Management
+                </h1>
+
+                <p>
+                    Never miss a dose again. Simple, secure, and reliable medication management designed for patients, elderly users, and caregivers.
+                </p>
+
+                <div class="cta-group">
+                    <!-- ✅ FIXED -->
+                    <button class="btn1-con" onclick="location.href='/login/'">Get Started</button>
+
+                    <button class="btn2-con" onclick="document.getElementById('working').scrollIntoView()">How It Works</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="con2">
+            <div class="con2-text">
+                <h1>Complete Care in Your Pocket</h1>
+                <p>Everything you need to manage medications safely and effectively, all in one simple application.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">
+                        <img src="https://img.icons8.com/fluency-systems-regular/48/0F4C81/clock--v1.png" width="30">
+                    </div>
+                    <h3>Smart Reminders</h3>
+                    <p>Get timely notifications when it's time to take your medication.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">
+                        <img src="https://img.icons8.com/?size=100&id=rByUxemhSVxi&format=png&color=0F4C81" width="30">
+                    </div>
+                    <h3>Secure Data</h3>
+                    <p>Your health data is encrypted and secure.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">
+                        <img src="https://img.icons8.com/?size=100&id=1JgQtoeQ4jyU&format=png&color=0F4C81" width="30">
+                    </div>
+                    <h3>Caregiver Access</h3>
+                    <p>Allow family members to monitor adherence.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">
+                        <img src="https://img.icons8.com/windows/32/0F4C81/qr-code.png" width="30">
+                    </div>
+                    <h3>QR Medical Records</h3>
+                    <p>Generate secure QR code for doctors.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">
+                        <img src="https://img.icons8.com/windows/32/0F4C81/alarm.png" width="30">
+                    </div>
+                    <h3>Inventory Tracking</h3>
+                    <p>Know when you're running low.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">
+                        <img src="https://img.icons8.com/material-outlined/24/0F4C81/checked--v1.png" width="30">
+                    </div>
+                    <h3>Dosage History</h3>
+                    <p>Keep a complete log of medications.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="working" class="con3">
+            <div class="con2-text">
+                <h1>How It Works</h1>
+                <p>Four simple steps to peace of mind.</p>
+            </div>
+
+            <div class="working-grid">
+                <div class="working-card"><div class="num">01</div><h3>Sign Up</h3></div>
+                <div class="working-card"><div class="num">02</div><h3>Add Meds</h3></div>
+                <div class="working-card"><div class="num">03</div><h3>Get Notified</h3></div>
+                <div class="working-card"><div class="num">04</div><h3>Track</h3></div>
+            </div>
+        </section>
+
+        <section id="contact" class="con4">
+            <div class="con4-text">
+                <h2>Ready to simplify your health?</h2>
+                <p>Join thousands of users managing their medication.</p>
+
+                <!-- ✅ FIXED -->
+                <button onclick="location.href='/signup/'">Create Free Account</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <!-- ✅ FIXED IMAGE -->
+                <img src="{% static 'images/DoseCare_logo.png' %}" height="60">
+                <p>Your trusted partner in medication management.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 DoseCare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode (UNCHANGED)
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+
+        const setDarkMode = (isDark) => {
+            if (isDark) {
+                body.classList.add('dark-mode');
+                themeIcon.src = 'https://img.icons8.com/ios/50/FFD700/sun--v1.png';
+                localStorage.setItem('dosecare_theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeIcon.src = 'https://img.icons8.com/ios/50/2563eb/moon-symbol.png';
+                localStorage.setItem('dosecare_theme', 'light');
+            }
+        };
+
+        darkModeBtn.addEventListener('click', () => {
+            setDarkMode(!body.classList.contains('dark-mode'));
+        });
+
+        if (localStorage.getItem('dosecare_theme') === 'dark') {
+            setDarkMode(true);
+        }
+    </script>
+</body>
+</html>

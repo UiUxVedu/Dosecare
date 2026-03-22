@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - DoseCare</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styleSheet.css' %}">
+</head>
+
+<body>
+    <header class="navbar fixed-top">
+        <div class="logo">
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'images/DoseCare_logo.png' %}" alt="DoseCare" height="50">
+            </a>
+        </div>
+        <div class="right">
+            <button id="dark-mode-btn" class="dark-mode-toggle" title="Toggle Dark Mode">
+                <img id="theme-icon" src="https://img.icons8.com/ios/50/2563eb/moon-symbol.png" alt="dark mode">
+            </button>
+        </div>
+    </header> 
+
+    <div class="form-container" style="margin-top: 150px;">
+        <div class="card" style="max-width: 450px;">
+            <h2 class="text-center">Welcome Back</h2>
+            <p class="subtitle text-center">Login to manage your medications.</p>
+            <hr>
+
+            <!-- ✅ DJANGO FORM START -->
+            <form method="POST">
+                {% csrf_token %}
+
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter username" required>
+                
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password" required>
+                
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="remember">
+                        <label class="form-check-label" for="remember" style="margin-top: 0; font-size: 14px; color: #818184;">
+                            Remember me
+                        </label>
+                    </div>
+                    <a href="/login/" style="text-decoration: none; color: #228be6 ; font-size: 14px;">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="add-btn" style="width: 100%; margin-top: 30px;">
+                    Login
+                </button>
+
+                <!-- ERROR MESSAGE -->
+                {% if error %}
+                <p style="color:red; margin-top:10px;">{{ error }}</p>
+                {% endif %}
+                
+                <p class="text-center mt-4" style="color: var(--text-muted); font-size: 16px;">
+                    Don't have an account? 
+                    <a href="/signup/" style="color: #228be6 ; text-decoration: none; font-weight: 600;">
+                        Sign up
+                    </a>
+                </p>
+            </form>
+            <!-- ✅ DJANGO FORM END -->
+
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode (UNCHANGED UI LOGIC)
+        const darkModeBtn = document.getElementById('dark-mode-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+
+        const setDarkMode = (isDark) => {
+            if (isDark) {
+                body.classList.add('dark-mode');
+                themeIcon.src = 'https://img.icons8.com/ios/50/FFD700/sun--v1.png';
+                localStorage.setItem('dosecare_theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeIcon.src = 'https://img.icons8.com/ios/50/2563eb/moon-symbol.png';
+                localStorage.setItem('dosecare_theme', 'light');
+            }
+        };
+
+        darkModeBtn.addEventListener('click', () => {
+            setDarkMode(!body.classList.contains('dark-mode'));
+        });
+
+        if (localStorage.getItem('dosecare_theme') === 'dark') {
+            setDarkMode(true);
+        }
+    </script>
+</body>
+</html>
